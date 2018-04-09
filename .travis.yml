@@ -5,17 +5,7 @@ python: "2.7"
 
 
 env:
-  - distribution: centos
-    version: 6
-    init: /sbin/init
-    run_opts: ""
-    SITE=test.yml
-  - distribution: centos
-    version: 7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    SITE=test.yml
-
+  - SITE=test.yml
 
 before_install:
   - sudo apt-get update -qq
