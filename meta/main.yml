@@ -1,19 +1,8 @@
 galaxy_info:
   author: Max I. Shaposhnikoff
-  description: Install any version of Oracle java, downloaded from Oracle repozitory
+  description: Role to install Oracle Java.
   company: Fuib.com
 
-  # If the issue tracker for your role is not on github, uncomment the
-  # next line and provide a value
-  # issue_tracker_url: http://example.com/issue/tracker
-
-  # Some suggested licenses:
-  # - BSD (default)
-  # - MIT
-  # - GPLv2
-  # - GPLv3
-  # - Apache
-  # - CC-BY
   license: license (GPLv2, CC-BY, etc)
 
   min_ansible_version: 1.2
@@ -37,16 +26,17 @@ galaxy_info:
     versions:
     - all
     - 25
-  - name: Centos
+  - name: CentOS
     versions:
-    - all
-  #   - 1.0
-  #   - 7
-  #   - 99.99
-
+      - all
+      - any
+      - 7
+      - 6
+  
   galaxy_tags: [
-  java
-  oracle
+  - development
+  - java
+  - system
   ]
     # List tags for your role here, one per line. A tag is a keyword that describes
     # and categorizes the role. Users find roles by searching for tags. Be sure to
