@@ -1,19 +1,39 @@
 ---
+sudo: required
 language: python
 python: "2.7"
 
+
+env:
+  - SITE=test.yml
+
 before_install:
-  # Make sure everything's up to date.
   - sudo apt-get update -qq
+  - sudo apt-get install curl
 
 install:
   # Install Ansible.
   - pip install ansible
+  - ansible-galaxy install shaposhnikoff.java
 
   # Add ansible.cfg to pick up roles path.
   - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 
 script:
-  # We'll add some commands to test the role here.
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  # Check the role/playbook's syntax.
+  - "ansible-playbook -i tests/inventory tests/$SITE --syntax-check"
+
+  # Run the role/playbook with ansible-playbook.
+  - "ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo"
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/$SITE --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
+  # Check if composer is installed and working.
+  - composer
+
 
