@@ -9,7 +9,7 @@ env:
     version: 6
     init: /sbin/init
     run_opts: ""
-    SITE=: test.yml
+    SITE=test.yml
   - distribution: centos
     version: 7
     init: /usr/lib/systemd/systemd
